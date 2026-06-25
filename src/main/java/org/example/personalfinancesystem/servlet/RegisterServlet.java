@@ -34,11 +34,11 @@ public class RegisterServlet extends HttpServlet {
 
         if (success) {
             // สมัครสำเร็จ ส่งไปหน้าล็อกอินหลัก
-            session.setAttribute("regSuccess", "สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ");
+            session.setAttribute("regSuccess", "注册成功！请登录。");
             response.sendRedirect("index.jsp");
         } else {
             // สมัครล้มเหลว (เช่น ชื่อซ้ำ) ส่งกลับไปหน้าเดิมพร้อมข้อความเตือน
-            session.setAttribute("regError", "ไม่สามารถสมัครได้ ชื่อผู้ใช้นี้อาจถูกใช้ไปแล้ว");
+            session.setAttribute("regError", "注册失败，用户名可能已被占用。");
             response.sendRedirect("register.jsp");
         }
     }

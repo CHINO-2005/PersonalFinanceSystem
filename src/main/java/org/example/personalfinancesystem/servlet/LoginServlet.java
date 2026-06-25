@@ -40,18 +40,18 @@ public class LoginServlet extends HttpServlet {
             String savingsAdvice;
             String statusClass;
             if (totalIncome == 0) {
-                savingsAdvice = "เริ่มต้นบันทึกรายรับ-รายจ่ายของคุณ เพื่อรับคำแนะนำการออมอัจฉริยะ!";
+                savingsAdvice = "请开始记录您的收入和支出，以获取智能储蓄建议！";
                 statusClass = "text-muted";
             } else {
                 double expenseRatio = (totalExpense / totalIncome) * 100;
                 if (expenseRatio <= 50) {
-                    savingsAdvice = "ยอดเยี่ยมมาก! คุณใช้จ่ายไปเพียง " + String.format("%.1f", expenseRatio) + "% ของรายได้ มีเงินเก็บตามเป้าหมาย สภาพคล่องทางการเงินดีเยี่ยม";
+                    savingsAdvice = "太棒了！您的支出仅占收入的 " + String.format("%.1f", expenseRatio) + "%。达到了储蓄目标，财务状况非常良好。";
                     statusClass = "text-success";
                 } else if (expenseRatio <= 80) {
-                    savingsAdvice = "สถานะปกติ: คุณใช้จ่ายไป " + String.format("%.1f", expenseRatio) + "% ของรายได้ ควรเริ่มวางแผนตัดค่าใช้จ่ายที่ไม่จำเป็นออกเพื่อเพิ่มเงินออม";
+                    savingsAdvice = "状态正常：您的支出占收入的 " + String.format("%.1f", expenseRatio) + "%。建议开始削减不必要的开支，以增加储蓄。";
                     statusClass = "text-warning";
                 } else {
-                    savingsAdvice = "แจ้งเตือนความเสี่ยง! คุณใช้จ่ายสูงถึง " + String.format("%.1f", expenseRatio) + "% ของรายได้ เสี่ยงต่อสภาวะเงินช็อต ควรหยุดค่าใช้จ่ายฟุ่มเฟือยทันที";
+                    savingsAdvice = "风险预警！您的支出高达收入的 " + String.format("%.1f", expenseRatio) + "%，面临资金短缺的风险。请立即停止非必要消费。";
                     statusClass = "text-danger";
                 }
             }
@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("dashboard.jsp");
         } else {
             // ล็อกอินไม่สำเร็จ: ส่งกลับหน้าแรกพร้อมข้อความแจ้งเตือน
-            request.setAttribute("errorMessage", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+            request.setAttribute("errorMessage", "用户名或密码不正确");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
